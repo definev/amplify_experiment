@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PostFeedState {
-  List<Post> get posts => throw _privateConstructorUsedError;
+  Set<Post> get posts => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ abstract class $PostFeedStateCopyWith<$Res> {
   factory $PostFeedStateCopyWith(
           PostFeedState value, $Res Function(PostFeedState) then) =
       _$PostFeedStateCopyWithImpl<$Res>;
-  $Res call({List<Post> posts, int page, bool isLoading});
+  $Res call({Set<Post> posts, int page, bool isLoading});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$PostFeedStateCopyWithImpl<$Res>
       posts: posts == freezed
           ? _value.posts
           : posts // ignore: cast_nullable_to_non_nullable
-              as List<Post>,
+              as Set<Post>,
       page: page == freezed
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -72,7 +72,7 @@ abstract class _$$_PostFeedStateCopyWith<$Res>
           _$_PostFeedState value, $Res Function(_$_PostFeedState) then) =
       __$$_PostFeedStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Post> posts, int page, bool isLoading});
+  $Res call({Set<Post> posts, int page, bool isLoading});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$_PostFeedStateCopyWithImpl<$Res>
       posts: posts == freezed
           ? _value._posts
           : posts // ignore: cast_nullable_to_non_nullable
-              as List<Post>,
+              as Set<Post>,
       page: page == freezed
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -113,16 +113,16 @@ class __$$_PostFeedStateCopyWithImpl<$Res>
 
 class _$_PostFeedState implements _PostFeedState {
   const _$_PostFeedState(
-      {required final List<Post> posts,
+      {required final Set<Post> posts,
       required this.page,
       required this.isLoading})
       : _posts = posts;
 
-  final List<Post> _posts;
+  final Set<Post> _posts;
   @override
-  List<Post> get posts {
+  Set<Post> get posts {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_posts);
+    return EqualUnmodifiableSetView(_posts);
   }
 
   @override
@@ -160,12 +160,12 @@ class _$_PostFeedState implements _PostFeedState {
 
 abstract class _PostFeedState implements PostFeedState {
   const factory _PostFeedState(
-      {required final List<Post> posts,
+      {required final Set<Post> posts,
       required final int page,
       required final bool isLoading}) = _$_PostFeedState;
 
   @override
-  List<Post> get posts;
+  Set<Post> get posts;
   @override
   int get page;
   @override

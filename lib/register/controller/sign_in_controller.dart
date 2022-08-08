@@ -1,6 +1,7 @@
 import 'package:amplify_experiment/register/model/states/sign_in_state.dart';
 import 'package:amplify_experiment/register/repository/register_repository.dart';
-import 'package:amplify_experiment/register/services/notif_register_service.dart';
+import 'package:amplify_experiment/register/service/add_user_model_service.dart';
+import 'package:amplify_experiment/register/service/notif_register_service.dart';
 import 'package:amplify_experiment/register/view/sign_up_view.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,8 @@ class SignInController extends StateNotifier<SignInState> {
       );
 
       if (result.isSignedIn) {
-        await NotifRegisterLogicService(ref).run();
+        await NotifRegisterService(ref).run();
+        await AddUserModelService(ref, state.email!).run();
       }
     } catch (e) {
       sm.showSnackBar(

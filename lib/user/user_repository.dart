@@ -8,4 +8,8 @@ final userRepositoryProvider = Provider<UserRepository>((ref) {
 
 abstract class UserRepository {
   Future<AppAuthUser?> getUserById(String id);
+
+  Future<void> createUser(AppAuthUser user);
+
+  Future<void> deleteUser(AppAuthUser user);
 }

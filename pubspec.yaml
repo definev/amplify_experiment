@@ -25,6 +25,7 @@ dependencies:
   animations: ^2.0.3
   flextras: ^0.0.2
   sliver_tools: ^0.2.7
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:

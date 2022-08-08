@@ -13,7 +13,7 @@ class PostFeedController extends DependenciesStateNotifier<PostFeedState> {
       : super(
           ref,
           const PostFeedState(
-            posts: [],
+            posts: {},
             page: -1,
             isLoading: true,
           ),
@@ -52,7 +52,7 @@ class PostFeedController extends DependenciesStateNotifier<PostFeedState> {
     state = state.copyWith(
       isLoading: false,
       page: currPage,
-      posts: [...state.posts, ...newPosts],
+      posts: {...state.posts, ...newPosts},
     );
   }
 }

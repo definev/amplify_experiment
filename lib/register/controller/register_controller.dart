@@ -4,7 +4,7 @@ import 'package:amplify_experiment/register/repository/register_repository.dart'
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final registerControllerProvider =
-    StateNotifierProvider<RegisterController, RegisterState>(
+    StateNotifierProvider.autoDispose<RegisterController, RegisterState>(
   (ref) => RegisterController(ref),
 );
 

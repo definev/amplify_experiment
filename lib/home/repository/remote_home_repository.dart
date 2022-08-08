@@ -13,4 +13,10 @@ class RemoteHomeRepository extends HomeRepository {
     final user = await Amplify.Auth.getCurrentUser();
     return user.toAppAuthUser();
   }
+
+  @override
+  Future<T> logout<T>() async {
+    final result = await Amplify.Auth.signOut();
+    return result as T;
+  }
 }

@@ -15,7 +15,7 @@ class HomeView extends ConsumerWidget {
     final state = ref.watch(homeControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: const HomeAppBar(),
       body: state.map(
         data: HomeDataContent.new,
         error: HomeErrorContent.new,
@@ -23,4 +23,32 @@ class HomeView extends ConsumerWidget {
       ),
     );
   }
+}
+
+class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
+  const HomeAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(homeControllerProvider.notifier);
+
+    return AppBar(
+      title: const Text('Home'),
+      leading: IconButton(
+        icon: const Icon(Icons.delete),
+        onPressed: () => controller.deleteUser(context),
+      ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: () => controller.signOut(context),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Size get preferredSize => AppBar().preferredSize;
 }

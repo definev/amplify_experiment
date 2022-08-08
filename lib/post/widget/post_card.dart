@@ -3,13 +3,14 @@ import 'package:amplify_experiment/user/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final _userNamePostProvider = FutureProvider.family<String?, String>(
+final _userNamePostProvider =
+    FutureProvider.autoDispose.family<String?, String>(
   (ref, arg) async {
     final repository = ref.read(userRepositoryProvider);
 
     final user = await repository.getUserById(arg);
 
-    return user?.username;
+    return user?.userId;
   },
 );
 
@@ -24,7 +25,7 @@ class PostCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final userName = ref.read(_userNamePostProvider(post.userID));
+    final userName = ref.watch(_userNamePostProvider(post.userID));
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 2),

@@ -2,6 +2,7 @@ import 'package:amplify_experiment/home/model/states/home_state.dart';
 import 'package:amplify_experiment/post/widget/create_post.dart';
 import 'package:amplify_experiment/post/widget/post_feed.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -15,6 +16,7 @@ class HomeDataContent extends StatelessWidget {
         MultiSliver(
           children: const [
             CreatePost(),
+            Gap(2),
             PostFeed(),
           ],
         ),

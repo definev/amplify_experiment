@@ -24,7 +24,7 @@ class PostFeed extends ConsumerWidget {
             );
           }
 
-          return PostCard(post: posts[index]);
+          return PostCard(post: posts.elementAt(index));
         },
         childCount: state.posts.length + (state.isLoading ? 1 : 0),
       ),

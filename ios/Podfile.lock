@@ -54,6 +54,8 @@ PODS:
     - AWSCore (~> 2.27.0)
   - Flutter (1.0.0)
   - ObjectMapper (4.2.0)
+  - path_provider_ios (0.0.1):
+    - Flutter
   - smart_auth (0.0.1):
     - Flutter
   - SQLite.swift (0.13.2):
@@ -68,6 +70,7 @@ DEPENDENCIES:
   - amplify_datastore (from `.symlinks/plugins/amplify_datastore/ios`)
   - amplify_flutter_ios (from `.symlinks/plugins/amplify_flutter_ios/ios`)
   - Flutter (from `Flutter`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
 
 SPEC REPOS:
@@ -96,6 +99,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/amplify_flutter_ios/ios"
   Flutter:
     :path: Flutter
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
   smart_auth:
     :path: ".symlinks/plugins/smart_auth/ios"
 
@@ -114,6 +119,7 @@ SPEC CHECKSUMS:
   AWSPluginsCore: c29c4b91c4ecd7376b85288615bb482f409a0b73
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
   SQLite.swift: 4fc2be46c36392e3b87afe6fe7f1801c1daa07ef
   SwiftFormat: 09cc5eb67ae49356c4ad9a2be6a0d5a4212b61bb

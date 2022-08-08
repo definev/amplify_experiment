@@ -17,4 +17,29 @@ class AmplifyUserRepository extends UserRepository {
       users.first.name,
     );
   }
+
+  @override
+  Future<void> createUser(AppAuthUser user) async {
+    await Amplify.DataStore.save(
+      User(
+        id: user.userId,
+        name: user.username,
+      ),
+    );
+  }
+
+  @override
+  Future<void> deleteUser(AppAuthUser user) async {
+    await Amplify.Auth.deleteUser();
+    final authUser = await Amplify.DataStore.query(
+      User.classType,
+      where: User.ID.eq(user.userId),
+    );
+    if (authUser.isEmpty) return;
+
+    await Amplify.DataStore.delete(
+      authUser.first,
+      where: User.ID.eq(user.userId),
+    );
+  }
 }

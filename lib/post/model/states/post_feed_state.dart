@@ -6,7 +6,7 @@ part 'post_feed_state.freezed.dart';
 @freezed
 class PostFeedState with _$PostFeedState {
   const factory PostFeedState({
-    required List<Post> posts,
+    required Set<Post> posts,
     required int page,
     required bool isLoading,
   }) = _PostFeedState;
