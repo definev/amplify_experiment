@@ -35,7 +35,7 @@ class AmplifyPostRepository implements PostRepository {
   Future<List<Post>> getPosts(int page) async {
     final posts = await Amplify.DataStore.query(
       Post.classType,
-      pagination: QueryPagination(page: page),
+      pagination: QueryPagination(page: page, limit: 25),
     );
 
     return posts;

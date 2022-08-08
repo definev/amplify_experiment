@@ -31,6 +31,7 @@ class User extends Model {
   static const classType = const _UserModelType();
   final String id;
   final List<Post>? _posts;
+  final String? _name;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -46,6 +47,19 @@ class User extends Model {
     return _posts;
   }
   
+  String get name {
+    try {
+      return _name!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -54,12 +68,13 @@ class User extends Model {
     return _updatedAt;
   }
   
-  const User._internal({required this.id, posts, createdAt, updatedAt}): _posts = posts, _createdAt = createdAt, _updatedAt = updatedAt;
+  const User._internal({required this.id, posts, required name, createdAt, updatedAt}): _posts = posts, _name = name, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory User({String? id, List<Post>? posts}) {
+  factory User({String? id, List<Post>? posts, required String name}) {
     return User._internal(
       id: id == null ? UUID.getUUID() : id,
-      posts: posts != null ? List<Post>.unmodifiable(posts) : posts);
+      posts: posts != null ? List<Post>.unmodifiable(posts) : posts,
+      name: name);
   }
   
   bool equals(Object other) {
@@ -71,7 +86,8 @@ class User extends Model {
     if (identical(other, this)) return true;
     return other is User &&
       id == other.id &&
-      DeepCollectionEquality().equals(_posts, other._posts);
+      DeepCollectionEquality().equals(_posts, other._posts) &&
+      _name == other._name;
   }
   
   @override
@@ -83,6 +99,7 @@ class User extends Model {
     
     buffer.write("User {");
     buffer.write("id=" + "$id" + ", ");
+    buffer.write("name=" + "$_name" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -90,10 +107,11 @@ class User extends Model {
     return buffer.toString();
   }
   
-  User copyWith({String? id, List<Post>? posts}) {
+  User copyWith({String? id, List<Post>? posts, String? name}) {
     return User._internal(
       id: id ?? this.id,
-      posts: posts ?? this.posts);
+      posts: posts ?? this.posts,
+      name: name ?? this.name);
   }
   
   User.fromJson(Map<String, dynamic> json)  
@@ -104,17 +122,19 @@ class User extends Model {
           .map((e) => Post.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
+      _name = json['name'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'posts': _posts?.map((Post? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'posts': _posts?.map((Post? e) => e?.toJson()).toList(), 'name': _name, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField POSTS = QueryField(
     fieldName: "posts",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Post).toString()));
+  static final QueryField NAME = QueryField(fieldName: "name");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "User";
     modelSchemaDefinition.pluralName = "Users";
@@ -137,6 +157,12 @@ class User extends Model {
       isRequired: false,
       ofModelName: (Post).toString(),
       associatedKey: Post.USERID
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: User.NAME,
+      isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

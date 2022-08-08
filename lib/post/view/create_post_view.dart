@@ -41,7 +41,10 @@ class CreatePostView extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: ElevatedButton(
-                onPressed: () => controller.createPost(textController.text),
+                onPressed: () => controller.createPost(
+                  context,
+                  textController.text,
+                ),
                 child: const Text('Post'),
               ),
             ),

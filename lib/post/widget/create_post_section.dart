@@ -1,8 +1,5 @@
-import 'package:amplify_experiment/post/view/create_post_view.dart';
 import 'package:amplify_experiment/post/widget/post_action_button.dart';
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final postContentControllerProvider =
