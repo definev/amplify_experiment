@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RegisterState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthUser user) signedIn,
+    required TResult Function() signedIn,
     required TResult Function() notSignedIn,
     required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
     required TResult orElse(),
@@ -84,7 +84,6 @@ abstract class _$$_SignedInCopyWith<$Res> {
   factory _$$_SignedInCopyWith(
           _$_SignedIn value, $Res Function(_$_SignedIn) then) =
       __$$_SignedInCopyWithImpl<$Res>;
-  $Res call({AuthUser user});
 }
 
 /// @nodoc
@@ -96,80 +95,57 @@ class __$$_SignedInCopyWithImpl<$Res> extends _$RegisterStateCopyWithImpl<$Res>
 
   @override
   _$_SignedIn get _value => super._value as _$_SignedIn;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(_$_SignedIn(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as AuthUser,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_SignedIn implements _SignedIn {
-  _$_SignedIn({required this.user});
-
-  @override
-  final AuthUser user;
+  _$_SignedIn();
 
   @override
   String toString() {
-    return 'RegisterState.signedIn(user: $user)';
+    return 'RegisterState.signedIn()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SignedIn &&
-            const DeepCollectionEquality().equals(other.user, user));
+        (other.runtimeType == runtimeType && other is _$_SignedIn);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SignedInCopyWith<_$_SignedIn> get copyWith =>
-      __$$_SignedInCopyWithImpl<_$_SignedIn>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthUser user) signedIn,
+    required TResult Function() signedIn,
     required TResult Function() notSignedIn,
     required TResult Function() loading,
   }) {
-    return signedIn(user);
+    return signedIn();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
   }) {
-    return signedIn?.call(user);
+    return signedIn?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (signedIn != null) {
-      return signedIn(user);
+      return signedIn();
     }
     return orElse();
   }
@@ -210,12 +186,7 @@ class _$_SignedIn implements _SignedIn {
 }
 
 abstract class _SignedIn implements RegisterState {
-  factory _SignedIn({required final AuthUser user}) = _$_SignedIn;
-
-  AuthUser get user;
-  @JsonKey(ignore: true)
-  _$$_SignedInCopyWith<_$_SignedIn> get copyWith =>
-      throw _privateConstructorUsedError;
+  factory _SignedIn() = _$_SignedIn;
 }
 
 /// @nodoc
@@ -259,7 +230,7 @@ class _$_NotSignedIn implements _NotSignedIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthUser user) signedIn,
+    required TResult Function() signedIn,
     required TResult Function() notSignedIn,
     required TResult Function() loading,
   }) {
@@ -269,7 +240,7 @@ class _$_NotSignedIn implements _NotSignedIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
   }) {
@@ -279,7 +250,7 @@ class _$_NotSignedIn implements _NotSignedIn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
     required TResult orElse(),
@@ -368,7 +339,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthUser user) signedIn,
+    required TResult Function() signedIn,
     required TResult Function() notSignedIn,
     required TResult Function() loading,
   }) {
@@ -378,7 +349,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
   }) {
@@ -388,7 +359,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthUser user)? signedIn,
+    TResult Function()? signedIn,
     TResult Function()? notSignedIn,
     TResult Function()? loading,
     required TResult orElse(),

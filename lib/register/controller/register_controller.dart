@@ -1,17 +1,23 @@
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_experiment/amplifyconfiguration.dart';
+import 'package:amplify_experiment/_internal/dependencies_state_notifier.dart';
 import 'package:amplify_experiment/register/model/states/register_state.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_experiment/register/repository/register_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final registerControllerProvider =
     StateNotifierProvider<RegisterController, RegisterState>(
-  (ref) => RegisterController(),
+  (ref) => RegisterController(ref),
 );
 
-class RegisterController extends StateNotifier<RegisterState> {
-  RegisterController() : super(const RegisterState.loading()) {
+class RegisterController extends DependenciesStateNotifier<RegisterState> {
+  RegisterController(Ref ref) : super(ref, const RegisterState.loading()) {
     _loadAmplifyConfiguration();
+  }
+
+  late final RegisterRepository _repository;
+
+  @override
+  void getDependencies() {
+    _repository = ref.read(registerRepositoryProvider);
   }
 
   Future<void> _loadAmplifyConfiguration() async {
@@ -20,19 +26,14 @@ class RegisterController extends StateNotifier<RegisterState> {
 
   Future<void> loadRegisterState() async {
     try {
-      final signIn = await isSignedIn;
+      final signIn = await _repository.isSignedIn();
       if (!signIn) {
         state = const RegisterState.notSignedIn();
+        return;
       }
-      final user = await Amplify.Auth.getCurrentUser();
-      state = RegisterState.signedIn(user: user);
+      state = RegisterState.signedIn();
     } catch (e) {
       state = const RegisterState.notSignedIn();
     }
-  }
-
-  Future<bool> get isSignedIn async {
-    final result = await Amplify.Auth.fetchAuthSession();
-    return result.isSignedIn;
   }
 }

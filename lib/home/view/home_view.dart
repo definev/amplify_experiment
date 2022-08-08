@@ -1,5 +1,4 @@
 import 'package:amplify_experiment/home/controller/home_controller.dart';
-import 'package:amplify_experiment/home/model/states/home_state.dart';
 import 'package:amplify_experiment/home/widget/home_data_content.dart';
 import 'package:amplify_experiment/home/widget/home_error_content.dart';
 import 'package:amplify_experiment/home/widget/home_loading_content.dart';

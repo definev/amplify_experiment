@@ -38,7 +38,7 @@ class SignInContent extends HookConsumerWidget {
           child: const Text('Sign In'),
         ),
         OutlinedButton(
-          onPressed: () => controller.signUp(context),
+          onPressed: () => controller.pushSignUpView(context),
           child: const Text('Sign Up'),
         ),
       ],

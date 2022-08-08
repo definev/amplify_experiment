@@ -1,5 +1,6 @@
 import 'package:amplify_experiment/register/model/states/sign_in_state.dart';
-import 'package:amplify_experiment/register/controller/register_controller.dart';
+import 'package:amplify_experiment/register/repository/register_repository.dart';
+import 'package:amplify_experiment/register/services/notif_register_service.dart';
 import 'package:amplify_experiment/register/view/sign_up_view.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,16 @@ class SignInController extends StateNotifier<SignInState> {
       email: null,
       password: null,
     ),
-  ]) : super(state);
+  ]) : super(state) {
+    _getDependencies(ref);
+  }
 
   final Ref ref;
+  late final RegisterRepository _repository;
+
+  void _getDependencies(Ref ref) {
+    _repository = ref.read(registerRepositoryProvider);
+  }
 
   void setEmail(String email) {
     state = state.copyWith(email: email);
@@ -39,13 +47,13 @@ class SignInController extends StateNotifier<SignInState> {
     }
 
     try {
-      final result = await Amplify.Auth.signIn(
-        username: state.email!,
-        password: state.password!,
+      final result = await _repository.signIn<SignInResult>(
+        state.email!,
+        state.password!,
       );
 
       if (result.isSignedIn) {
-        await ref.read(registerControllerProvider.notifier).loadRegisterState();
+        await NotifRegisterLogicService(ref).run();
       }
     } catch (e) {
       sm.showSnackBar(
@@ -56,7 +64,7 @@ class SignInController extends StateNotifier<SignInState> {
     }
   }
 
-  void signUp(BuildContext context) {
+  void pushSignUpView(BuildContext context) {
     final nav = Navigator.of(context);
     nav.push(
       MaterialPageRoute(

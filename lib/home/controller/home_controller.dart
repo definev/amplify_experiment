@@ -1,23 +1,25 @@
-import 'package:amplify_datastore/amplify_datastore.dart';
-import 'package:amplify_experiment/amplifyconfiguration.dart';
 import 'package:amplify_experiment/home/model/states/home_state.dart';
-import 'package:amplify_experiment/models/ModelProvider.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_experiment/home/repository/home_repository.dart';
+import 'package:amplify_experiment/home/repository/remote_home_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final homeControllerProvider =
     StateNotifierProvider<HomeController, AsyncValue<HomeState>>(
-  (ref) => HomeController(const AsyncValue.loading()),
+  (ref) => HomeController(ref, const AsyncValue.loading()),
 );
 
 class HomeController extends StateNotifier<AsyncValue<HomeState>> {
-  HomeController(super.state) {
+  HomeController(Ref ref, super.state) {
     _init();
+
+    _homeRepository = ref.read(homeRepositoryProvider);
   }
+
+  late final HomeRepository _homeRepository;
 
   void _init() async {
     try {
-      final authUser = await Amplify.Auth.getCurrentUser();
+      final authUser = await _homeRepository.getCurrentUser();
       state = AsyncValue.data(HomeState(authUser));
     } catch (e) {
       state = AsyncValue.error(e);

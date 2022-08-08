@@ -73,10 +73,10 @@ class CreatePostSection extends ConsumerWidget {
                   alignment: Alignment.topRight,
                   child: TextButton(
                     style: theme.textButtonTheme.style!.copyWith(
-                      shape: MaterialStateProperty.all(StadiumBorder()),
+                      shape: MaterialStateProperty.all(const StadiumBorder()),
                     ),
                     onPressed: openSection,
-                    child: Icon(Icons.expand),
+                    child: const Icon(Icons.expand),
                   ),
                 ),
               ],
@@ -190,7 +190,7 @@ class CreatePostView extends ConsumerWidget {
                 expands: true,
               ),
             ),
-            Flexible(
+            const Flexible(
               child: SizedBox(),
             ),
             Padding(
@@ -202,7 +202,7 @@ class CreatePostView extends ConsumerWidget {
                     content: textController.text,
                   ),
                 ),
-                child: Text('Post'),
+                child: const Text('Post'),
               ),
             ),
           ],

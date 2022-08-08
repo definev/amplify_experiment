@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  AuthUser get authUser => throw _privateConstructorUsedError;
+  AppAuthUser get authUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -27,7 +27,7 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call({AuthUser authUser});
+  $Res call({AppAuthUser authUser});
 }
 
 /// @nodoc
@@ -46,7 +46,7 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
       authUser: authUser == freezed
           ? _value.authUser
           : authUser // ignore: cast_nullable_to_non_nullable
-              as AuthUser,
+              as AppAuthUser,
     ));
   }
 }
@@ -57,7 +57,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _$_HomeState value, $Res Function(_$_HomeState) then) =
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call({AuthUser authUser});
+  $Res call({AppAuthUser authUser});
 }
 
 /// @nodoc
@@ -78,7 +78,7 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
       authUser == freezed
           ? _value.authUser
           : authUser // ignore: cast_nullable_to_non_nullable
-              as AuthUser,
+              as AppAuthUser,
     ));
   }
 }
@@ -89,7 +89,7 @@ class _$_HomeState implements _HomeState {
   const _$_HomeState(this.authUser);
 
   @override
-  final AuthUser authUser;
+  final AppAuthUser authUser;
 
   @override
   String toString() {
@@ -115,10 +115,10 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState(final AuthUser authUser) = _$_HomeState;
+  const factory _HomeState(final AppAuthUser authUser) = _$_HomeState;
 
   @override
-  AuthUser get authUser;
+  AppAuthUser get authUser;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
